@@ -7,9 +7,43 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Test</h1>
-    <h2>Test2</h2>
-    <h3>Test3</h3>
-    <h4>Test4</h4>
+    const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+
+function square() {
+  ctx.rect(100, 25, 100, 100);
+  ctx.lineWidth = 5;
+  ctx.stroke();
+  ctx.fillStyle = "teal";
+  ctx.fill();
+}
+
+square();
+
+const inp1 = document.getElementsByTagName("input")[0],
+  inp2 = document.getElementsByTagName("input")[1],
+  p = document.querySelector("p");
+
+inp1.checked = true;
+inp1.addEventListener("click", () => {
+  inp2.checked = false;
+  canvas.width = 300;
+  canvas.height = 150;
+  square();
+
+  p.innerHTML = `
+  <strong>Explination:</strong> The square is drawn on the canvas, where the default width and height of its <i>content</i> is 300x150.`;
+});
+
+inp2.addEventListener("click", () => {
+  inp1.checked = false;
+  canvas.width = 600;
+  canvas.height = 300;
+  square();
+
+  p.innerHTML = `
+  <strong>Explination:</strong> The square is drawn onto the canvas, where the width and height of its <i>content</i> has been changed to 600x300. The square visibly shrinks, now that the content of the canvas has to fit more units than the actual width and height of the canvas.
+  `;
+});
 </body>
 </html>
